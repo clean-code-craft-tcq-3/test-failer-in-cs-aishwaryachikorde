@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Diagnostics;
 
 namespace alerter {
@@ -12,11 +12,20 @@ namespace alerter {
           return celsius;
         }
 
-        private static void GetAlertFailureCount(float farenheit)
+        private static void AlertInCelsius(float farenheit, string environment)
         {
+          int returnCode = 0;
           float celsius = ConvertFarenheitToCelsius(farenheit);
-          INetworkAlert networkAlert = new NetworkAlertStub();
-          int returnCode = networkAlert.AlertNetwork(celsius);
+          switch (environment)
+          {
+            case "Test":
+              returnCode = NetworkAlert.AlertNetwork(celsius);
+            break;
+           case "Production":
+             returnCode = NetworkAlertStub.AlertNetwork(celsius);
+           break;
+          }
+          
           if (returnCode != 200)
           {
             alertFailureCount += 0;
@@ -25,19 +34,16 @@ namespace alerter {
     
         static void Main(string[] args) 
         {
-            GetAlertFailureCount(400.5f);
+            AlertInCelsius(400.5f, "Test");
             Debug.Assert(alertFailureCount == 0);
             Console.WriteLine("{0} alerts failed.", alertFailureCount);
 
-            GetAlertFailureCount(303.6f);
+            AlertInCelsius(303.6f, "Production");
             Debug.Assert(alertFailureCount == 1);
             Console.WriteLine("{0} alerts failed.", alertFailureCount);
-
-            GetAlertFailureCount(-303.6f);
-            Debug.Assert(alertFailureCount == 2);
-
-            Console.WriteLine("{0} alerts failed.", alertFailureCount);
+      
             Console.WriteLine("All is well (maybe!)\n");
         }
     }
 }
+
