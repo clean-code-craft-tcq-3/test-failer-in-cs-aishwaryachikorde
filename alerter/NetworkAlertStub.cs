@@ -1,10 +1,10 @@
-﻿using System;
+using System;
 
 namespace alerter
 {
-  public class NetworkAlertStub: INetworkAlert
+  public class NetworkAlertStub
   {
-    public int AlertNetwork(float celsius)
+    public static int AlertNetwork(float celsius)
     {
       Console.WriteLine("ALERT: Temperature is {0} celsius", celsius);
       // Return 200 for ok
