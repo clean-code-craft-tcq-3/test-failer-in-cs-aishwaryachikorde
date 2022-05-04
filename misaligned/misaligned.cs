@@ -22,16 +22,22 @@ namespace MisalignedSpace
           colorCodePairList.Add(new ColorCodeProperties 
             {
               majorColor = majorColors[i], 
-              minorColor = minorColors[i], 
+              minorColor = minorColors[j], 
               colorCodeToDisplay = colorMapToPrint
             });
 
-          Console.WriteLine(colorMapToPrint);
+          PrintOnConsole(colorMapToPrint);
         } 
       }
       
       return colorCodePairList;
     }
+
+    private static void PrintOnConsole(string colorCodeToDisplay)
+    {
+      Console.WriteLine(colorCodeToDisplay);
+    }
   }
 }
+
 
