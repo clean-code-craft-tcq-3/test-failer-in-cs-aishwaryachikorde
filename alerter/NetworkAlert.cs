@@ -11,9 +11,9 @@ namespace alerter
       {
         return 500; // 500 is the failure value
       }
-
-      return 200; // 200 is the success value
+      
+      // stub always succeeds and returns 200
+      return 200;
     }
   }
 }
-
