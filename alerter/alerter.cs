@@ -1,6 +1,6 @@
 namespace alerter {
     class Alerter {
-        public static int alertFailureCount = 0;
+        public static int AlertFailureCount;
 
         private static float ConvertFarenheitToCelsius(float farenheit)
         {
@@ -9,23 +9,15 @@ namespace alerter {
           return celsius;
         }
 
-        public static void AlertInCelsius(float farenheit, string environment)
+        public static void AlertInCelsius(float farenheit)
         {
-          int returnCode = 0;
+          int returnCode;
           float celsius = ConvertFarenheitToCelsius(farenheit);
-          switch (environment)
-          {
-            case "Test":
-              returnCode = NetworkAlert.AlertNetwork(celsius);
-            break;
-           case "Production":
-             returnCode = NetworkAlertStub.AlertNetwork(celsius);
-           break;
-          }
-          
+         returnCode = NetworkAlert.AlertNetwork(celsius);
+        
           if (returnCode != 200)
           {
-            alertFailureCount += 1;
+            AlertFailureCount += 1;
           }
         }
     }
