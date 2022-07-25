@@ -25,7 +25,7 @@ namespace MisalignedSpace
     {
       foreach (ColorCodeProperties colorCode in colorPair)
       {
-        Console.WriteLine("{1, -8} | {2, -8} | {0, -8}", colorCode.MinorColor, colorCode.MajorColor, colorCode.PairNumber);
+        Console.WriteLine("{0, -8} | {1, -8} | {2, -8}", colorCode.PairNumber, colorCode.MajorColor, colorCode.MinorColor);
       }
     }
 
