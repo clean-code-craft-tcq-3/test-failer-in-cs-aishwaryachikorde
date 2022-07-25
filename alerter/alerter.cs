@@ -1,31 +1,24 @@
-﻿using System;
-
-namespace AlerterSpace {
+namespace alerter {
     class Alerter {
-        static int alertFailureCount = 0;
-        static int networkAlertStub(float celcius) {
-            Console.WriteLine("ALERT: Temperature is {0} celcius", celcius);
-            // Return 200 for ok
-            // Return 500 for not-ok
-            // stub always succeeds and returns 200
-            return 200;
+        public static int AlertFailureCount;
+
+        private static float ConvertFarenheitToCelsius(float farenheit)
+        {
+          float celsius = (farenheit - 32) * 5 / 9;
+
+          return celsius;
         }
-        static void alertInCelcius(float farenheit) {
-            float celcius = (farenheit - 32) * 5 / 9;
-            int returnCode = networkAlertStub(celcius);
-            if (returnCode != 200) {
-                // non-ok response is not an error! Issues happen in life!
-                // let us keep a count of failures to report
-                // However, this code doesn't count failures!
-                // Add a test below to catch this bug. Alter the stub above, if needed.
-                alertFailureCount += 0;
-            }
-        }
-        static void Main(string[] args) {
-            alertInCelcius(400.5f);
-            alertInCelcius(303.6f);
-            Console.WriteLine("{0} alerts failed.", alertFailureCount);
-            Console.WriteLine("All is well (maybe!)\n");
+
+        public static void AlertInCelsius(float farenheit)
+        {
+          int returnCode;
+          float celsius = ConvertFarenheitToCelsius(farenheit);
+         returnCode = NetworkAlert.AlertNetwork(celsius);
+        
+          if (returnCode != 200)
+          {
+            AlertFailureCount += 1;
+          }
         }
     }
 }
