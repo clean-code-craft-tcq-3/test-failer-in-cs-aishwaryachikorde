@@ -25,10 +25,10 @@ namespace misaligned
       {
         Debug.Assert(ColorCode[i] != null);
         Debug.Assert(ColorCode[i].PairNumber == i + 1);
-        //Debug.Assert(ColorCode[0].MajorColor == "White");
-        //Debug.Assert(ColorCode[0].MinorColor == "Blue");
-        Debug.Assert(ColorCode[10].MajorColor == "Red");
-        //Debug.Assert(ColorCode[9].MinorColor == "Slate");
+        Debug.Assert(ColorCode[0].MajorColor == "White");
+        Debug.Assert(ColorCode[0].MinorColor == "Blue");
+        Debug.Assert(ColorCode[9].MajorColor == "Red");
+        Debug.Assert(ColorCode[9].MinorColor == "Slate");
       }
 
       Debug.Assert(GetCount(majorColors, minorColors) == 25);
